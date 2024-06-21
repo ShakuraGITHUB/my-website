@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rätsel Seite</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Rätsel</h1>
+        <p>Beantworten sie die folgende Frage, um das Passwort zu erhalten:</p>
+        <p>Wer sind die beiden Schwestern, die sich stets gegenseitig erzeugen?</p>
+        <input type="text" id="password" placeholder="Gib hier das Passwort ein">
+        <button onclick="checkPassword()">Abschicken</button>
+        <p id="error-message" class="error"></p>
+    </div>
+    
+    <button class="help-button" onclick="openModal()">Hilfe</button>
+
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Hilfe</h2>
+            <div>
+                <h3>Tipp:</h3>
+                <p>Das Passwort beschreibt die beiden Schwestern.</p>
+            </div>
+            <div>
+                <h3>Passwortformat:</h3>
+                <p>Verwenden sie Kleinbuchstaben und das Wort 'und'.</p>
+            </div>
+            <div>
+                <h3>Lösung:</h3>
+                <button onclick="showSolution()">Lösung anzeigen</button>
+                <p id="solution" style="display:none;">Das Passwort lautet: 'tag und nacht'</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            var password = document.getElementById("password").value;
+            var answer = "tag und nacht";
+
+            if (password.toLowerCase() === answer) {
+                window.location.href = "success.html";
+            } else {
+                document.getElementById("error-message").textContent = "Falsches Passwort. Versuch es noch einmal!";
+            }
+        }
+
+        function openModal() {
+            document.getElementById("helpModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("helpModal").style.display = "none";
+        }
+
+        function showSolution() {
+            document.getElementById("solution").style.display = "block";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("helpModal")) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
